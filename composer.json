@@ -1,0 +1,22 @@
+{
+    "name": "h4hardik/attask",
+    "description": "Provide AtTtask API Operations",
+	"keywords": ["laravel", "framework", "attask", "atTaskAPI", "TaskAPI", "AtTask Service",  "Laravel-AtTask", "Hardik Bhavsar", "HardikBhavsar" ,"h4hardik"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Hardik Bhavsar",
+            "email": "hardy4php@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "5.0.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "h4hardik\\AtTask": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
