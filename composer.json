@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "h4hardik\\AtTask": "src/"
+            "h4hardik\\attask": "src/"
         }
     },
     "minimum-stability": "dev"
