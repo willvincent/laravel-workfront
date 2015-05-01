@@ -10,6 +10,8 @@ To get the latest version of Laravel AtTask, simply add the following line to th
 ```
 You'll then need to run `composer install` or `composer update` to download it and have the autoloader updated , and it's DONE!!!
 
+*This module is still way far from being perfect, it's not ready for production. However You can use it in your project. And anytime you think it's not good and want to improve it, a pull request is more than welcome.*
+
 ## Usage
 
 Add Lines in your Controller:<br>
@@ -30,4 +32,6 @@ Laravel Exceptions is licensed under [The MIT License (MIT)](LICENSE).
 ## Credits
 
 This is based on and essentially a highly simplified PHP Class file example of AtTask [API] (https://developers.attask.com/api-docs/code-samples/)
+
+
 
