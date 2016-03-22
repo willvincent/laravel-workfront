@@ -489,21 +489,19 @@ class WorkfrontClient {
    */
   private function request ($path, $params, $fields, $method) {
     if ($method == self::METH_POST) {
-      $uri = $this->prepare($path, $params, $fields, $method);
-      $uri = explode('?', $uri);
-
-      curl_setopt($this->handle, CURLOPT_POSTFIELDS, $uri[1]);
-      $uri = $uri[0];
+      curl_setopt($this->handle, CURLOPT_POST, TRUE);
+      curl_setopt($this->handle, CURLOPT_POSTFIELDS, $params);
+      $uri = $path;
     }
     else {
       // Prepare the request URI
       $uri = $this->prepare($path, $params, $fields, $method);
-    }
 
-    // Add request to the queue if running in batch mode
-    if ($this->batch) {
-      $this->queue[] = $uri;
-      return NULL;
+      // Add request to the queue if running in batch mode
+      if ($this->batch) {
+        $this->queue[] = $uri;
+        return NULL;
+      }
     }
 
     // Set dynamic cURL options
