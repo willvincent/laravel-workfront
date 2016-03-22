@@ -1,37 +1,69 @@
-# AtTask APIs Operataion with Laravel 5
+# WorkFront API client for Laravel 5.x
 
-Performe all Operataion of [atTaskApis] (https://developers.attask.com/api-docs/) with Laravel5
+Perform all Operations of [WorkFront APIs](https://developers.workfront.com/api-docs/) with Laravel 5.x
 
 ## Installation
 
-To get the latest version of Laravel AtTask, simply add the following line to the require block of your `composer.json` file:
+To get the latest version of `laravel-workfront`, simply add the following line to the require block of your `composer.json` file:
 ```
-"h4hardik/attask": "dev-master"
+"willvincent/laravel-workfront": "dev-master"
 ```
-You'll then need to run `composer install` or `composer update` to download it and have the autoloader updated , and it's DONE!!!
+You'll then need to run `composer install` or `composer update` to download it and have the autoloader updated.
 
-*This module is still way far from being perfect, it's not ready for production. However You can use it in your project. And anytime you think it's not good and want to improve it, a pull request is more than welcome.*
+Once added to your laravel project, you will want to add the service provider.
+Find the `providers` key in your `config/app.php` file and register the service provider:
+
+```
+'providers' => [
+    // ...
+
+    willvincent\Workfront\WorkfrontServiceProvider::class,
+],
+```
+
+Also locate the `Aliases` key in your `config/app.php` file and  register the Facade:
+
+```
+'aliases' => [
+    // ...
+
+    'Workfront' => willvincent\Workfront\Facades\WorkfrontFacade::class,
+],
+```
+
+Finally, run `php artisan vendor:publish` to copy the default config into your app's config directory.
+Update the config with your proper credentials.
 
 ## Usage
 
-Add Lines in your Controller:<br>
+```
+$client = Workfront::client();
+$client->login();  // You can optionally pass username/email and password here, otherwise the values from the config file will be used.
 
-``use \Vendor\AtTask\StreamClient as AtTaskClass;`` // Using Namespace
+// Fetch all fields for all projects with a status of CUR or PLN, that are less than 100% complete.
+$results = $client->search(
+  'project',                          // workfront object code
+  array(                              // query
+    'status' => array('CUR', 'PLN'),
+    'status_Mod' => 'in',
+    'percentComplete' => 100,
+    'percentComplete_Mod' => 'lt'
+  ),
+  '*'                                 // fields (can also be an array of specific fields)
+);
 
-In your function
+$client->logout();
+```
 
-` $atTaskObj = new AtTaskClass('https://lexisnexis.attasksandbox.com');`<br>
-  `$session = $atTaskObj->login('rohit.chopra@lexisnexis.com', 'l3xisn3xis');`
-
-You can find other Opertaions : [Here] (https://developers.attask.com/api-docs/)
+You can find other Operations and API informattion [here](https://developers.attask.com/api-docs/).
 
 ## License
 
-Laravel Exceptions is licensed under [The MIT License (MIT)](LICENSE).
+Laravel Workfront is licensed under [The MIT License (MIT)](LICENSE.txt).
 
 ## Credits
 
-This is based on and essentially a highly simplified PHP Class file example of AtTask [API] (https://developers.attask.com/api-docs/code-samples/)
+This is based on example code provided by Workfront, as part of their [API Documentation](https://developers.workfront.com/api-docs/code-samples/).
 
 
 
