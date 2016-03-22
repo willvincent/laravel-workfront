@@ -1,6 +1,6 @@
 <?php namespace willvincent\Workfront;
 
-use WorkfrontException;
+use willvincent\Workfront\WorkfrontException;
 
 class WorkfrontClient {
 
@@ -28,7 +28,7 @@ class WorkfrontClient {
     $atomic = FALSE,
     $handle = NULL,
     $hostname = NULL,
-    $sessionID = NULL;
+    $sessionID = NULL,
     $config = [];
 
   /**
@@ -104,8 +104,14 @@ class WorkfrontClient {
    * @param  string $password
    * @return object
    */
-  public function login ($username = $this->config['account.login'],
-                         $password = $this->config['account.password']) {
+  public function login ($username = '', $password = '') {
+    if (empty($username)) {
+      $username = $this->config['account.login'];
+    }
+    if (empty($password)) {
+      $password = $this->config['account.password'];
+    }
+
     // Validate request before unnecessarily taxing the server
     if (empty($username) || empty($password)) {
       throw new WorkfrontException('Please provide both a username and password');
@@ -118,7 +124,7 @@ class WorkfrontClient {
         'password' => $password
       ),
       NULL,
-      self::METH_GET
+      self::METH_POST
     );
 
     // Store session ID
@@ -493,13 +499,13 @@ class WorkfrontClient {
 
     // Set dynamic cURL options
     curl_setopt($this->handle, CURLOPT_URL, $this->hostname . $uri);
-
     //echo $this->hostname . $uri;
 
     // Execute request
     if (!($response = curl_exec($this->handle))) {
       throw new WorkfrontException(curl_error($this->handle));
     }
+
     $result = json_decode($response);
 
     // Verify result

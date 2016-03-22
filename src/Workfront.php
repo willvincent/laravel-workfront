@@ -1,6 +1,6 @@
 <?php namespace willvincent\Workfront;
 
-use WorkfrontClient;
+use willvincent\Workfront\WorkfrontClient;
 
 class Workfront {
   protected $instance;
