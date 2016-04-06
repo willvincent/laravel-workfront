@@ -1,23 +1,30 @@
 {
-    "name": "willvincent/laravel-workfront",
-    "description": "Provides Workfront API Operations to Laravel 5.x",
-	"keywords": ["laravel", "framework", "attask", "atTaskAPI", "WorkFront", "WorkFrontAPI"],
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Will Vincent",
-            "email": "will.vincent@ffwagency.com"
-        }
-    ],
-    "require": {
-        "php": ">=5.4.0",
-        "ext-curl": "*",
-        "illuminate/support": "~5.0"
-    },
-    "autoload": {
-        "psr-4": {
-            "willvincent\\Workfront\\": "src"
-        }
-    },
-    "minimum-stability": "dev"
+  "name": "willvincent/laravel-workfront",
+  "description": "Provides Workfront API Operations to Laravel 5.x",
+  "keywords": [
+    "laravel",
+    "framework",
+    "attask",
+    "atTaskAPI",
+    "WorkFront",
+    "WorkFrontAPI"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Will Vincent",
+      "email": "will.vincent@ffwagency.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "illuminate/support": "~5.0",
+    "guzzlehttp/guzzle": "~6.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "willvincent\\Workfront\\": "src"
+    }
+  },
+  "minimum-stability": "dev"
 }
